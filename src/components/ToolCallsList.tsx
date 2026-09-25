@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ToolCallItem, UnavailableServer, TravelDimension } from "../types";
-import { DimensionChip } from "./DimensionChip";
 import {
   Wrench,
   AlertTriangle,
@@ -50,30 +49,30 @@ export const ToolCallsList: React.FC<Props> = ({
   const failedCount = toolCalls.filter((t) => t.failed).length;
 
   return (
-    <div className="mt-3 rounded-xl border border-slate-800 bg-slate-950/70 overflow-hidden text-xs">
+    <div className="mt-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/70 overflow-hidden text-xs transition-colors">
       {/* Header bar */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex items-center justify-between px-3.5 py-2.5 bg-slate-900/60 cursor-pointer hover:bg-slate-900 transition-colors select-none border-b border-slate-800/60"
+        className="flex items-center justify-between px-3.5 py-2.5 bg-slate-100/80 dark:bg-slate-900/60 cursor-pointer hover:bg-slate-200/60 dark:hover:bg-slate-900 transition-colors select-none border-b border-slate-200 dark:border-slate-800/60"
       >
         <div className="flex items-center gap-2 flex-wrap">
-          <div className="flex items-center gap-1.5 font-medium text-slate-300">
-            <Wrench className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="flex items-center gap-1.5 font-medium text-slate-800 dark:text-slate-300">
+            <Wrench className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
             <span>Agent Tool Calls</span>
-            <span className="px-1.5 py-0.2 rounded-full bg-slate-800 text-slate-400 font-mono text-[11px]">
+            <span className="px-1.5 py-0.2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-mono text-[11px]">
               {toolCalls.length}
             </span>
           </div>
 
           {failedCount > 0 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-950/80 border border-rose-800/80 text-rose-300 text-[11px]">
-              <AlertTriangle className="w-3 h-3 text-rose-400" />
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-950/80 dark:border dark:border-rose-800/80 dark:text-rose-300 text-[11px]">
+              <AlertTriangle className="w-3 h-3 text-rose-600 dark:text-rose-400" />
               {failedCount} failed
             </span>
           )}
 
           {routingFallback && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-950/60 border border-amber-800/60 text-amber-300 text-[11px]">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:border dark:border-amber-800/60 dark:text-amber-300 text-[11px]">
               Routing fallback active
             </span>
           )}
@@ -81,7 +80,7 @@ export const ToolCallsList: React.FC<Props> = ({
 
         <button
           type="button"
-          className="text-slate-400 hover:text-slate-200 transition-colors p-1"
+          className="text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors p-1"
           aria-label={isExpanded ? "Collapse tool calls" : "Expand tool calls"}
         >
           {isExpanded ? (
@@ -97,7 +96,7 @@ export const ToolCallsList: React.FC<Props> = ({
           {/* Tool Calls in Order */}
           {hasTools ? (
             <div className="space-y-2">
-              <div className="text-[11px] font-medium uppercase tracking-wider text-slate-400 px-0.5">
+              <div className="text-[11px] font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 px-0.5">
                 Execution Order ({toolCalls.length})
               </div>
               <div className="space-y-1.5">
@@ -111,23 +110,25 @@ export const ToolCallsList: React.FC<Props> = ({
                       key={idx}
                       className={`rounded-lg border transition-all ${
                         isFailed
-                          ? "bg-rose-950/30 border-rose-700/60 shadow-sm shadow-rose-950/40"
-                          : "bg-slate-900/50 border-slate-800/80 hover:border-slate-700"
+                          ? "bg-rose-50 border-rose-300 dark:bg-rose-950/30 dark:border-rose-700/60"
+                          : "bg-white dark:bg-slate-900/50 border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700"
                       }`}
                     >
                       <div className="flex items-center justify-between px-3 py-2 gap-2 flex-wrap">
                         <div className="flex items-center gap-2">
-                          <span className="w-4 h-4 rounded-full bg-slate-800 flex items-center justify-center font-mono text-[10px] text-slate-400">
+                          <span className="w-4 h-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center font-mono text-[10px] text-slate-600 dark:text-slate-400">
                             {idx + 1}
                           </span>
                           <span
                             className={`font-mono font-medium ${
-                              isFailed ? "text-rose-300" : "text-cyan-300"
+                              isFailed
+                                ? "text-rose-700 dark:text-rose-300"
+                                : "text-cyan-700 dark:text-cyan-300"
                             }`}
                           >
                             {tc.name}
                           </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-800/80 text-slate-300 text-[11px] font-mono border border-slate-700/50">
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 text-[11px] font-mono border border-slate-200 dark:border-slate-700/50">
                             <Server className="w-2.5 h-2.5 text-slate-400" />
                             {serverLabel}
                           </span>
@@ -135,12 +136,12 @@ export const ToolCallsList: React.FC<Props> = ({
 
                         <div className="flex items-center gap-1.5">
                           {isFailed ? (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-900/50 text-rose-300 text-[10px] font-semibold border border-rose-700/50">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-900/50 dark:text-rose-300 text-[10px] font-semibold border border-rose-300 dark:border-rose-700/50">
                               <AlertTriangle className="w-2.5 h-2.5" />
                               FAILED
                             </span>
                           ) : (
-                            <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-400 text-[10px] font-medium border border-emerald-800/40">
+                            <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400 text-[10px] font-medium border border-emerald-200 dark:border-emerald-800/40">
                               Success
                             </span>
                           )}
@@ -148,7 +149,7 @@ export const ToolCallsList: React.FC<Props> = ({
                           <button
                             type="button"
                             onClick={() => toggleArg(idx)}
-                            className="p-1 text-slate-400 hover:text-slate-200"
+                            className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                             title="Toggle arguments"
                           >
                             {isArgsOpen ? (
@@ -162,20 +163,22 @@ export const ToolCallsList: React.FC<Props> = ({
 
                       {/* Arguments View */}
                       {isArgsOpen && (
-                        <div className="px-3 pb-2.5 pt-0 border-t border-slate-800/50">
+                        <div className="px-3 pb-2.5 pt-0 border-t border-slate-100 dark:border-slate-800/50">
                           <div className="flex items-center justify-between my-1">
-                            <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider">
+                            <span className="text-[10px] font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                               Arguments
                             </span>
                             <button
                               type="button"
                               onClick={() => copyArgs(idx, tc.args)}
-                              className="inline-flex items-center gap-1 text-[10px] text-slate-400 hover:text-cyan-300 transition-colors"
+                              className="inline-flex items-center gap-1 text-[10px] text-slate-500 hover:text-cyan-600 dark:text-slate-400 dark:hover:text-cyan-300 transition-colors"
                             >
                               {copiedIndex === idx ? (
                                 <>
-                                  <Check className="w-3 h-3 text-emerald-400" />
-                                  <span className="text-emerald-400">Copied</span>
+                                  <Check className="w-3 h-3 text-emerald-500 dark:text-emerald-400" />
+                                  <span className="text-emerald-600 dark:text-emerald-400">
+                                    Copied
+                                  </span>
                                 </>
                               ) : (
                                 <>
@@ -185,7 +188,7 @@ export const ToolCallsList: React.FC<Props> = ({
                               )}
                             </button>
                           </div>
-                          <pre className="p-2 rounded bg-slate-950/90 text-slate-300 font-mono text-[11px] overflow-x-auto border border-slate-800/80 leading-relaxed max-h-48">
+                          <pre className="p-2 rounded bg-slate-50 dark:bg-slate-950/90 text-slate-800 dark:text-slate-300 font-mono text-[11px] overflow-x-auto border border-slate-200 dark:border-slate-800/80 leading-relaxed max-h-48">
                             {Object.keys(tc.args || {}).length === 0
                               ? "{}"
                               : JSON.stringify(tc.args, null, 2)}
@@ -198,14 +201,14 @@ export const ToolCallsList: React.FC<Props> = ({
               </div>
             </div>
           ) : (
-            <div className="text-slate-500 italic py-1">
+            <div className="text-slate-400 dark:text-slate-500 italic py-1">
               No remote tool calls were required for this response.
             </div>
           )}
 
           {/* Not-Covered Dimensions in Grey */}
           {hasNotCovered && (
-            <div className="pt-2 border-t border-slate-800/60">
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800/60">
               <div className="text-[11px] font-medium uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1.5">
                 <HelpCircle className="w-3 h-3 text-slate-400" />
                 <span>Not Covered Dimensions (No Server Assigned)</span>
@@ -214,10 +217,12 @@ export const ToolCallsList: React.FC<Props> = ({
                 {notCovered.map((dim) => (
                   <span
                     key={dim}
-                    className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-900 border border-slate-800 text-slate-400 text-xs"
+                    className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-xs"
                   >
                     <span>{dim}</span>
-                    <span className="text-[10px] text-slate-500">(uncovered)</span>
+                    <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                      (uncovered)
+                    </span>
                   </span>
                 ))}
               </div>
@@ -226,7 +231,7 @@ export const ToolCallsList: React.FC<Props> = ({
 
           {/* Unavailable Servers in Grey */}
           {hasUnavailable && (
-            <div className="pt-2 border-t border-slate-800/60">
+            <div className="pt-2 border-t border-slate-200 dark:border-slate-800/60">
               <div className="text-[11px] font-medium uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-1.5">
                 <Server className="w-3 h-3 text-slate-400" />
                 <span>Unavailable Servers ({unavailable.length})</span>
@@ -235,17 +240,17 @@ export const ToolCallsList: React.FC<Props> = ({
                 {unavailable.map((srv, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-slate-900/60 border border-slate-800 text-slate-400 text-xs"
+                    className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 text-xs"
                   >
-                    <div className="flex items-center gap-1.5">
-                      <span className="font-mono text-slate-400 font-medium">
+                    <div className="flex items-center gap-1.5 truncate mr-2">
+                      <span className="font-mono text-slate-800 dark:text-slate-400 font-medium">
                         {srv.label}
                       </span>
-                      <span className="text-slate-600 text-[11px] font-mono">
+                      <span className="text-slate-500 dark:text-slate-600 text-[11px] font-mono truncate">
                         ({srv.address})
                       </span>
                     </div>
-                    <span className="text-slate-500 italic text-[11px]">
+                    <span className="text-slate-500 italic text-[11px] shrink-0">
                       {srv.reason}
                     </span>
                   </div>

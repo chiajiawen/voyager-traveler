@@ -161,25 +161,25 @@ export const PlanTab: React.FC<Props> = ({
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-8">
       {/* Top Banner */}
-      <div className="rounded-2xl p-6 bg-gradient-to-r from-slate-900 via-slate-900 to-cyan-950/40 border border-slate-800 shadow-xl">
+      <div className="rounded-2xl p-6 bg-gradient-to-r from-slate-100 via-white to-cyan-50 dark:from-slate-900 dark:via-slate-900 dark:to-cyan-950/40 border border-slate-200 dark:border-slate-800 shadow-xl transition-colors">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 text-cyan-800 dark:text-cyan-400 text-xs font-semibold">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Full 10-Dimension Itinerary Engine</span>
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Plan Your Trip Across All Dimensions
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
               Provide your departure, budget, dates, and nationality. We query
               every MCP server in parallel to craft a verified, budget-checked
               itinerary.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-            <Wallet className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-950/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <Wallet className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0" />
             <span>
               Real-time FX conversions into your chosen currency with line-item
               reconciliation.
@@ -193,17 +193,17 @@ export const PlanTab: React.FC<Props> = ({
         {/* Planning Form */}
         <form
           onSubmit={handlePlanSubmit}
-          className="lg:col-span-5 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl"
+          className="lg:col-span-5 bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl transition-colors"
         >
-          <div className="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
-            <Sliders className="w-4 h-4 text-cyan-400" />
+          <div className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <Sliders className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
             <span>Trip Parameters</span>
           </div>
 
           {/* Origin City */}
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
               <span>Origin City *</span>
             </label>
             <input
@@ -213,15 +213,15 @@ export const PlanTab: React.FC<Props> = ({
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
               placeholder="e.g. Singapore, London, New York"
-              className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
             />
           </div>
 
           {/* Budget & Currency */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="sm:col-span-2">
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Wallet className="w-3.5 h-3.5 text-emerald-400" />
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Wallet className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
                 <span>Budget *</span>
               </label>
               <input
@@ -233,17 +233,17 @@ export const PlanTab: React.FC<Props> = ({
                   setBudget(e.target.value === "" ? "" : Number(e.target.value))
                 }
                 placeholder="2000"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                 Currency
               </label>
               <select
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-cyan-500/60"
               >
                 <option value="SGD">SGD</option>
                 <option value="USD">USD</option>
@@ -260,8 +260,8 @@ export const PlanTab: React.FC<Props> = ({
           {/* Dates */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
                 <span>Start Date *</span>
               </label>
               <input
@@ -269,12 +269,12 @@ export const PlanTab: React.FC<Props> = ({
                 required
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-cyan-500/60"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
                 <span>End Date * (max 30d)</span>
               </label>
               <input
@@ -282,7 +282,7 @@ export const PlanTab: React.FC<Props> = ({
                 required
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-cyan-500/60"
               />
             </div>
           </div>
@@ -290,8 +290,8 @@ export const PlanTab: React.FC<Props> = ({
           {/* Travellers & Nationality */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-cyan-400" />
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
                 <span>Travellers (1-10)</span>
               </label>
               <input
@@ -301,12 +301,12 @@ export const PlanTab: React.FC<Props> = ({
                 max={10}
                 value={travellers}
                 onChange={(e) => setTravellers(Number(e.target.value))}
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs focus:outline-none focus:border-cyan-500/60"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Globe className="w-3.5 h-3.5 text-rose-400" />
+              <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5 text-rose-500" />
                 <span>Nationality (for Visa) *</span>
               </label>
               <input
@@ -316,7 +316,7 @@ export const PlanTab: React.FC<Props> = ({
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
                 placeholder="e.g. Singaporean"
-                className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
+                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
               />
             </div>
           </div>
@@ -324,11 +324,11 @@ export const PlanTab: React.FC<Props> = ({
           {/* Destination (Optional) */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-medium text-slate-300 flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+              <label className="text-xs font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
                 <span>Destination (Optional)</span>
               </label>
-              <span className="text-[10px] text-slate-500">
+              <span className="text-[10px] text-slate-400 dark:text-slate-500">
                 Leave blank to shortlist up to 3
               </span>
             </div>
@@ -338,13 +338,13 @@ export const PlanTab: React.FC<Props> = ({
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder="e.g. Tokyo, Seoul, Bangkok (or blank)"
-              className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60"
             />
           </div>
 
           {/* Preferences */}
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5">
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Preferences & Trip Style
             </label>
             <textarea
@@ -353,14 +353,14 @@ export const PlanTab: React.FC<Props> = ({
               value={preferences}
               onChange={(e) => setPreferences(e.target.value)}
               placeholder="e.g. Near train stations, quiet boutique stays, culinary highlights..."
-              className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 resize-none"
+              className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/60 resize-none"
             />
           </div>
 
           {/* Error Message */}
           {errorMessage && (
-            <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-800/80 text-rose-200 text-xs flex items-start gap-2">
-              <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+            <div className="p-3 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-800/80 text-rose-800 dark:text-rose-200 text-xs flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
               <span>{errorMessage}</span>
             </div>
           )}
@@ -388,15 +388,15 @@ export const PlanTab: React.FC<Props> = ({
         {/* Results Column */}
         <div className="lg:col-span-7 space-y-6">
           {isLoading && (
-            <div className="p-12 rounded-2xl bg-slate-900/60 border border-slate-800 flex flex-col items-center justify-center text-center space-y-4">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 animate-pulse">
+            <div className="p-12 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center text-center space-y-4 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 animate-pulse">
                 <Sparkles className="w-6 h-6 animate-spin-slow" />
               </div>
               <div className="space-y-1">
-                <h3 className="text-base font-semibold text-white">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-white">
                   Querying All MCP Servers in Parallel
                 </h3>
-                <p className="text-xs text-slate-400 max-w-sm">
+                <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm">
                   Checking flight airfares, stays, currency rates, weather
                   forecasts, visa regulations, and summing line items to verify
                   affordability...
@@ -406,9 +406,9 @@ export const PlanTab: React.FC<Props> = ({
           )}
 
           {!isLoading && !planResult && (
-            <div className="p-10 rounded-2xl bg-slate-900/40 border border-dashed border-slate-800 flex flex-col items-center justify-center text-center space-y-3 text-slate-500">
-              <Receipt className="w-10 h-10 text-slate-600" />
-              <div className="text-sm font-medium text-slate-400">
+            <div className="p-10 rounded-2xl bg-white/60 dark:bg-slate-900/40 border border-dashed border-slate-300 dark:border-slate-800 flex flex-col items-center justify-center text-center space-y-3 text-slate-400 dark:text-slate-500 shadow-sm">
+              <Receipt className="w-10 h-10 text-slate-400 dark:text-slate-600" />
+              <div className="text-sm font-medium text-slate-600 dark:text-slate-400">
                 No Plan Generated Yet
               </div>
               <p className="text-xs text-slate-500 max-w-sm">
@@ -423,9 +423,9 @@ export const PlanTab: React.FC<Props> = ({
             <div className="space-y-6">
               {/* Summary */}
               {planResult.plan?.summary && (
-                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-200 leading-relaxed shadow-sm">
-                  <div className="font-semibold text-white mb-1 flex items-center gap-1.5 text-xs">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-200 leading-relaxed shadow-sm">
+                  <div className="font-semibold text-slate-900 dark:text-white mb-1 flex items-center gap-1.5 text-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
                     <span>Plan Summary</span>
                   </div>
                   {planResult.plan.summary}
@@ -434,8 +434,8 @@ export const PlanTab: React.FC<Props> = ({
 
               {/* Parse error warning if any */}
               {planResult.plan?.parse_error && (
-                <div className="p-3 rounded-xl bg-amber-950/50 border border-amber-800/80 text-amber-200 text-xs flex items-center gap-2">
-                  <FileQuestion className="w-4 h-4 text-amber-400 shrink-0" />
+                <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/50 border border-amber-200 dark:border-amber-800/80 text-amber-800 dark:text-amber-200 text-xs flex items-center gap-2">
+                  <FileQuestion className="w-4 h-4 text-amber-500 dark:text-amber-400 shrink-0" />
                   <span>
                     The model output could not be strictly parsed as JSON;
                     displaying raw summary response.
@@ -456,32 +456,32 @@ export const PlanTab: React.FC<Props> = ({
                 return (
                   <div
                     key={dIdx}
-                    className="rounded-2xl bg-slate-900 border border-slate-800 overflow-hidden shadow-xl"
+                    className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl transition-colors"
                   >
                     {/* Destination Card Header */}
-                    <div className="p-5 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-b from-slate-850 to-slate-900">
+                    <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50/80 dark:bg-gradient-to-b dark:from-slate-850 dark:to-slate-900">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2.5 flex-wrap">
-                          <h2 className="text-lg font-bold text-white tracking-tight">
+                          <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
                             {dest.name}
                           </h2>
 
                           {/* Budget Status Badge */}
                           {isWithinBudget ? (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-700/80 text-emerald-300 text-xs font-semibold">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:border dark:border-emerald-700/80 dark:text-emerald-300 text-xs font-semibold">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                               Within budget
                             </span>
                           ) : (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-950/80 border border-amber-700/80 text-amber-300 text-xs font-semibold">
-                              <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+                            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:border dark:border-amber-700/80 dark:text-amber-300 text-xs font-semibold">
+                              <AlertCircle className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                               Over budget
                             </span>
                           )}
 
                           {dest.model_claim_fits_budget !== undefined &&
                             dest.model_claim_fits_budget !== dest.fits_budget && (
-                              <span className="text-[10px] text-amber-400 bg-amber-950/40 px-2 py-0.5 rounded border border-amber-800/40">
+                              <span className="text-[10px] text-amber-700 dark:text-amber-400 bg-amber-100 dark:bg-amber-950/40 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/40">
                                 Model claimed{" "}
                                 {dest.model_claim_fits_budget ? "within" : "over"}{" "}
                                 budget
@@ -490,17 +490,17 @@ export const PlanTab: React.FC<Props> = ({
                         </div>
 
                         {/* Computed total vs Budget */}
-                        <div className="text-xs text-slate-400 flex items-center gap-2">
+                        <div className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-2">
                           <span>
                             Computed Total:{" "}
-                            <strong className="text-white font-mono">
+                            <strong className="text-slate-900 dark:text-white font-mono">
                               {computedTotal.toLocaleString()} {currency}
                             </strong>
                           </span>
                           <span>•</span>
                           <span>
                             Budget:{" "}
-                            <span className="text-slate-300 font-mono">
+                            <span className="text-slate-700 dark:text-slate-300 font-mono">
                               {Number(budget).toLocaleString()} {currency}
                             </span>
                           </span>
@@ -510,7 +510,7 @@ export const PlanTab: React.FC<Props> = ({
                       {/* Ask about this plan button */}
                       <button
                         onClick={() => onAskAboutPlan(dest.name)}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 text-xs font-semibold transition-all shrink-0 shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-50 hover:bg-cyan-100 dark:bg-cyan-500/10 dark:hover:bg-cyan-500/20 border border-cyan-200 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-xs font-semibold transition-all shrink-0 shadow-sm"
                       >
                         <MessageSquare className="w-3.5 h-3.5" />
                         <span>Ask about this plan</span>
@@ -518,11 +518,11 @@ export const PlanTab: React.FC<Props> = ({
                     </div>
 
                     {/* Budget Usage Progress Bar */}
-                    <div className="px-5 py-2.5 bg-slate-950/50 border-b border-slate-800/60 text-xs flex items-center gap-3">
-                      <span className="text-slate-400 text-[11px] font-mono shrink-0">
+                    <div className="px-5 py-2.5 bg-slate-50 dark:bg-slate-950/50 border-b border-slate-200 dark:border-slate-800/60 text-xs flex items-center gap-3">
+                      <span className="text-slate-500 dark:text-slate-400 text-[11px] font-mono shrink-0">
                         {percentUsed}% budget
                       </span>
-                      <div className="flex-1 h-2 rounded-full bg-slate-800 overflow-hidden">
+                      <div className="flex-1 h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-500 ${
                             isWithinBudget ? "bg-emerald-500" : "bg-amber-500"
@@ -533,15 +533,14 @@ export const PlanTab: React.FC<Props> = ({
                     </div>
 
                     {/* 10 Collapsible Dimension Sections */}
-                    <div className="p-5 space-y-2 border-b border-slate-800">
-                      <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                    <div className="p-5 space-y-2 border-b border-slate-200 dark:border-slate-800">
+                      <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                         Ten Dimensions Breakdown
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {ALL_DIMENSIONS.map((dimKey) => {
                           const dimDetail = dest.dimensions?.[dimKey];
-                          const meta = DIMENSIONS_META[dimKey];
                           const collapseKey = `${dIdx}-${dimKey}`;
                           const isOpen = expandedDims[collapseKey] ?? false;
 
@@ -551,7 +550,7 @@ export const PlanTab: React.FC<Props> = ({
                           return (
                             <div
                               key={dimKey}
-                              className="rounded-xl border border-slate-800 bg-slate-950/40 p-2.5 text-xs transition-colors hover:border-slate-700"
+                              className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/40 p-2.5 text-xs transition-colors hover:border-slate-300 dark:hover:border-slate-700"
                             >
                               <div
                                 onClick={() => toggleDim(collapseKey)}
@@ -566,7 +565,7 @@ export const PlanTab: React.FC<Props> = ({
                                 </div>
                                 <button
                                   type="button"
-                                  className="text-slate-400 hover:text-white p-0.5"
+                                  className="text-slate-400 hover:text-slate-700 dark:hover:text-white p-0.5"
                                 >
                                   {isOpen ? (
                                     <ChevronDown className="w-3.5 h-3.5" />
@@ -577,7 +576,7 @@ export const PlanTab: React.FC<Props> = ({
                               </div>
 
                               {isOpen && (
-                                <p className="mt-2 pt-2 border-t border-slate-800/80 text-slate-300 leading-relaxed text-[11px]">
+                                <p className="mt-2 pt-2 border-t border-slate-200 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 leading-relaxed text-[11px]">
                                   {text}
                                 </p>
                               )}
@@ -589,9 +588,9 @@ export const PlanTab: React.FC<Props> = ({
 
                     {/* Line Items Table */}
                     <div className="p-5">
-                      <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+                      <div className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5 flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <Receipt className="w-3.5 h-3.5 text-cyan-400" />
+                          <Receipt className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
                           <span>Line Items & Sources</span>
                         </div>
                         <span className="text-[11px] text-slate-500 font-mono">
@@ -600,9 +599,9 @@ export const PlanTab: React.FC<Props> = ({
                       </div>
 
                       {dest.line_items && dest.line_items.length > 0 ? (
-                        <div className="overflow-x-auto rounded-xl border border-slate-800">
+                        <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
                           <table className="w-full text-left text-xs">
-                            <thead className="bg-slate-950/80 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800 font-mono">
+                            <thead className="bg-slate-100 dark:bg-slate-950/80 text-slate-600 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800 font-mono">
                               <tr>
                                 <th className="px-3.5 py-2">Item</th>
                                 <th className="px-3.5 py-2">Amount</th>
@@ -610,23 +609,23 @@ export const PlanTab: React.FC<Props> = ({
                                 <th className="px-3.5 py-2">Fetched At</th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-800/60 font-sans">
+                            <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 font-sans">
                               {dest.line_items.map((li, liIdx) => (
                                 <tr
                                   key={liIdx}
-                                  className="hover:bg-slate-800/40 transition-colors"
+                                  className="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors"
                                 >
-                                  <td className="px-3.5 py-2.5 font-medium text-slate-200">
+                                  <td className="px-3.5 py-2.5 font-medium text-slate-800 dark:text-slate-200">
                                     {li.item}
                                   </td>
-                                  <td className="px-3.5 py-2.5 font-mono text-cyan-300 whitespace-nowrap">
+                                  <td className="px-3.5 py-2.5 font-mono text-cyan-700 dark:text-cyan-300 whitespace-nowrap">
                                     {Number(li.amount).toLocaleString()}{" "}
                                     {li.currency || currency}
                                   </td>
-                                  <td className="px-3.5 py-2.5 font-mono text-slate-400 text-[11px] whitespace-nowrap">
+                                  <td className="px-3.5 py-2.5 font-mono text-slate-600 dark:text-slate-400 text-[11px] whitespace-nowrap">
                                     {li.source || "MCP Tool"}
                                   </td>
-                                  <td className="px-3.5 py-2.5 font-mono text-slate-500 text-[10px] whitespace-nowrap">
+                                  <td className="px-3.5 py-2.5 font-mono text-slate-400 dark:text-slate-500 text-[10px] whitespace-nowrap">
                                     {li.fetched_at || "time not given"}
                                   </td>
                                 </tr>
@@ -635,7 +634,7 @@ export const PlanTab: React.FC<Props> = ({
                           </table>
                         </div>
                       ) : (
-                        <div className="text-slate-500 italic text-xs py-2">
+                        <div className="text-slate-400 dark:text-slate-500 italic text-xs py-2">
                           No itemized figures returned by tools.
                         </div>
                       )}
@@ -646,7 +645,7 @@ export const PlanTab: React.FC<Props> = ({
 
               {/* Tool Calls & Unavailable Servers Under Results */}
               <div className="pt-2">
-                <div className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                <div className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider mb-2">
                   Remote MCP Calls During Planning
                 </div>
                 <ToolCallsList

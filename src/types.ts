@@ -105,3 +105,28 @@ export interface ChatMessage {
   unavailable?: UnavailableServer[];
   model?: string;
 }
+
+export interface McpToolInfo {
+  name: string;
+  description: string;
+}
+
+export interface McpServerInfo {
+  label: string;
+  address: string;
+  dims: TravelDimension[];
+  status: "configured" | "connected" | "auth_required" | "unreachable";
+  pingMs: number | null;
+  tools: McpToolInfo[];
+  error: string | null;
+}
+
+export interface McpHealthResponse {
+  servers: McpServerInfo[];
+  total: number;
+  connectedCount?: number;
+  authRequiredCount?: number;
+  unreachableCount?: number;
+  hasSmitheryKey: boolean;
+  checkedAt: string;
+}

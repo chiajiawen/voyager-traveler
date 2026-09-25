@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import askHandler from "./api/ask.js";
 import planHandler from "./api/plan.js";
+import serversHandler from "./api/servers.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +25,8 @@ async function startServer() {
   // Register required endpoints
   app.post("/api/ask", askHandler);
   app.post("/api/plan", planHandler);
+  app.get("/api/servers", serversHandler);
+  app.post("/api/servers/test", serversHandler);
 
   if (process.env.NODE_ENV === "production") {
     const distPath = path.resolve(__dirname, "dist");

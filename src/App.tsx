@@ -3,9 +3,11 @@ import { Header } from "./components/Header";
 import { AskTab } from "./components/AskTab";
 import { PlanTab } from "./components/PlanTab";
 import { ArchitectureModal } from "./components/ArchitectureModal";
+import { McpStatusModal } from "./components/McpStatusModal";
+import { ThemeProvider } from "./context/ThemeContext";
 import { TripContext, ChatMessage } from "./types";
 
-export default function App() {
+function MainContent() {
   const [activeTab, setActiveTab] = useState<"ask" | "plan">("ask");
   const [context, setContext] = useState<TripContext>({
     origin_city: "Singapore",
@@ -20,6 +22,9 @@ export default function App() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isAskBusy, setIsAskBusy] = useState(false);
   const [isArchitectureOpen, setIsArchitectureOpen] = useState(false);
+  const [isMcpModalOpen, setIsMcpModalOpen] = useState(false);
+  const [mcpConnectedCount, setMcpConnectedCount] = useState(0);
+  const [mcpTotalCount, setMcpTotalCount] = useState(11);
 
   const handleUpdateContext = (newCtx: Partial<TripContext>) => {
     setContext((prev) => ({ ...prev, ...newCtx }));
@@ -33,10 +38,6 @@ export default function App() {
     setContext((prev) => ({ ...prev, destination: destName }));
     setActiveTab("ask");
 
-    // Add quick introductory context prompt to chat
-    const initialQuestion = `What are the top recommended places, transit options, and weather details for my planned trip to ${destName}?`;
-    // We can populate or let user immediately ask
-    // Add a helper turn or message to prompt the user
     const noticeMsg: ChatMessage = {
       id: crypto.randomUUID(),
       role: "model",
@@ -50,15 +51,23 @@ export default function App() {
     setMessages((prev) => [...prev, noticeMsg]);
   };
 
+  const handleServerStatusUpdate = (connected: number, total: number) => {
+    setMcpConnectedCount(connected);
+    setMcpTotalCount(total);
+  };
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
       <Header
         activeTab={activeTab}
         onTabChange={setActiveTab}
         context={context}
         onOpenArchitecture={() => setIsArchitectureOpen(true)}
+        onOpenMcpStatus={() => setIsMcpModalOpen(true)}
         onNewChat={handleNewChat}
         isAskBusy={isAskBusy}
+        mcpConnectedCount={mcpConnectedCount}
+        mcpTotalCount={mcpTotalCount}
       />
 
       <main className="flex-1 w-full">
@@ -84,6 +93,20 @@ export default function App() {
         isOpen={isArchitectureOpen}
         onClose={() => setIsArchitectureOpen(false)}
       />
+
+      <McpStatusModal
+        isOpen={isMcpModalOpen}
+        onClose={() => setIsMcpModalOpen(false)}
+        onServerStatusUpdate={handleServerStatusUpdate}
+      />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MainContent />
+    </ThemeProvider>
   );
 }

@@ -8,13 +8,22 @@ function apiFallbackPlugin(): Plugin {
     name: 'api-fallback',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        if (req.method === 'POST' && (req.url === '/api/ask' || req.url === '/api/plan')) {
+        if (
+          req.url?.startsWith('/api/servers') ||
+          (req.method === 'POST' && (req.url === '/api/ask' || req.url === '/api/plan'))
+        ) {
           try {
-            const isAsk = req.url === '/api/ask';
-            const module = isAsk
-              ? await import('./api/ask.js')
-              : await import('./api/plan.js');
-            const handler = module.default;
+            let handler: any;
+            if (req.url?.startsWith('/api/servers')) {
+              const module = await import('./api/servers.js');
+              handler = module.default;
+            } else if (req.url === '/api/ask') {
+              const module = await import('./api/ask.js');
+              handler = module.default;
+            } else {
+              const module = await import('./api/plan.js');
+              handler = module.default;
+            }
 
             let bodyText = '';
             req.on('data', (chunk) => {
@@ -27,6 +36,10 @@ function apiFallbackPlugin(): Plugin {
               } catch {
                 (req as any).body = {};
               }
+
+              // Parse query parameters
+              const parsedUrl = new URL(req.url || '', `http://${req.headers.host || 'localhost'}`);
+              (req as any).query = Object.fromEntries(parsedUrl.searchParams.entries());
 
               const customRes: any = res;
               customRes.status = (code: number) => {

@@ -174,9 +174,9 @@ export const AskTab: React.FC<Props> = ({
     <div className="flex flex-col h-[calc(100vh-4rem)] max-w-5xl mx-auto px-4 sm:px-6 py-4">
       {/* Context banner if context is active */}
       {hasContext && (
-        <div className="mb-3 px-3.5 py-2 rounded-xl bg-cyan-950/30 border border-cyan-800/40 flex items-center justify-between text-xs text-cyan-200">
+        <div className="mb-3 px-3.5 py-2 rounded-xl bg-cyan-50 dark:bg-cyan-950/30 border border-cyan-200 dark:border-cyan-800/40 flex items-center justify-between text-xs text-cyan-900 dark:text-cyan-200 transition-colors">
           <div className="flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <MapPin className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
             <span>
               <strong>Active Trip Context:</strong>{" "}
               {context.origin_city ? `From ${context.origin_city}` : ""}{" "}
@@ -186,7 +186,7 @@ export const AskTab: React.FC<Props> = ({
                 : ""}
             </span>
           </div>
-          <span className="text-[11px] text-cyan-400/80 font-mono">
+          <span className="text-[11px] text-cyan-700 dark:text-cyan-400/80 font-mono">
             Linked from Plan tab
           </span>
         </div>
@@ -196,15 +196,15 @@ export const AskTab: React.FC<Props> = ({
       <div className="flex-1 overflow-y-auto space-y-4 pr-1 scrollbar-thin">
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center p-6 space-y-6">
-            <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shadow-xl shadow-cyan-500/5">
+            <div className="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shadow-xl shadow-cyan-500/5">
               <Compass className="w-8 h-8" />
             </div>
 
             <div className="max-w-md space-y-2">
-              <h2 className="text-xl font-bold text-white">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                 What travel questions can I answer for you?
               </h2>
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Type in natural language. Our agent routes your question across
                 specialized MCP servers for live flight routes, visa rules,
                 weather, hotel stays, and currency conversions.
@@ -213,7 +213,7 @@ export const AskTab: React.FC<Props> = ({
 
             {/* 4 Example Question Chips */}
             <div className="w-full max-w-lg space-y-2">
-              <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider text-left">
+              <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-left">
                 Suggested questions:
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
@@ -221,13 +221,13 @@ export const AskTab: React.FC<Props> = ({
                   <button
                     key={idx}
                     onClick={() => handleSend(item.text)}
-                    className="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-slate-800/80 hover:border-cyan-500/40 text-left transition-all group flex flex-col justify-between"
+                    className="p-3 rounded-xl bg-white dark:bg-slate-900/80 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800/80 hover:border-cyan-500/40 text-left transition-all group flex flex-col justify-between shadow-sm"
                   >
                     <div className="flex items-center justify-between mb-1.5">
                       <DimensionChip dimension={item.dim} size="sm" />
-                      <ArrowRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-cyan-400 transition-colors" />
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-cyan-500 transition-colors" />
                     </div>
-                    <span className="text-xs font-medium text-slate-200 group-hover:text-white">
+                    <span className="text-xs font-medium text-slate-700 dark:text-slate-200 group-hover:text-slate-900 dark:group-hover:text-white">
                       "{item.text}"
                     </span>
                   </button>
@@ -245,7 +245,7 @@ export const AskTab: React.FC<Props> = ({
                 className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}
               >
                 {!isUser && (
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5 shadow-sm">
                     <Bot className="w-4 h-4" />
                   </div>
                 )}
@@ -253,15 +253,15 @@ export const AskTab: React.FC<Props> = ({
                 <div className={`max-w-3xl space-y-2 ${isUser ? "items-end" : "items-start"}`}>
                   {/* Message Bubble */}
                   <div
-                    className={`rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm ${
+                    className={`rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm transition-colors ${
                       isUser
                         ? "bg-cyan-500 text-slate-950 font-medium rounded-br-none"
-                        : "bg-slate-900 border border-slate-800 text-slate-200 rounded-bl-none"
+                        : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 rounded-bl-none"
                     }`}
                   >
                     {/* If clarifying question, show notice */}
                     {msg.needs_clarification && (
-                      <div className="mb-2 pb-2 border-b border-amber-500/20 text-xs font-semibold text-amber-400 flex items-center gap-1.5">
+                      <div className="mb-2 pb-2 border-b border-amber-500/20 text-xs font-semibold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
                         <HelpCircle className="w-3.5 h-3.5" />
                         <span>Clarification Needed:</span>
                       </div>
@@ -277,7 +277,7 @@ export const AskTab: React.FC<Props> = ({
                       {((msg.routed_to && msg.routed_to.length > 0) ||
                         (msg.servers_used && msg.servers_used.length > 0)) && (
                         <div className="flex flex-wrap items-center gap-2 pt-1 px-1">
-                          <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                          <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                             Routed to:
                           </span>
 
@@ -290,9 +290,9 @@ export const AskTab: React.FC<Props> = ({
                           {msg.servers_used?.map((srv) => (
                             <span
                               key={srv}
-                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700"
+                              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-mono border border-slate-200 dark:border-slate-700"
                             >
-                              <Server className="w-2.5 h-2.5 text-cyan-400" />
+                              <Server className="w-2.5 h-2.5 text-cyan-600 dark:text-cyan-400" />
                               {srv}
                             </span>
                           ))}
@@ -311,7 +311,7 @@ export const AskTab: React.FC<Props> = ({
 
                   {/* Timestamp & info */}
                   <div
-                    className={`text-[10px] text-slate-500 px-1 font-mono ${
+                    className={`text-[10px] text-slate-400 dark:text-slate-500 px-1 font-mono ${
                       isUser ? "text-right" : "text-left"
                     }`}
                   >
@@ -321,7 +321,7 @@ export const AskTab: React.FC<Props> = ({
                 </div>
 
                 {isUser && (
-                  <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 shrink-0 mt-0.5">
+                  <div className="w-8 h-8 rounded-lg bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 flex items-center justify-center text-slate-700 dark:text-slate-300 shrink-0 mt-0.5">
                     <User className="w-4 h-4" />
                   </div>
                 )}
@@ -333,11 +333,11 @@ export const AskTab: React.FC<Props> = ({
         {/* Loading Indicator */}
         {isBusy && (
           <div className="flex gap-3 justify-start items-center">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 animate-pulse">
+            <div className="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0 animate-pulse">
               <Sparkles className="w-4 h-4" />
             </div>
-            <div className="rounded-2xl rounded-bl-none px-4 py-3 bg-slate-900 border border-slate-800 text-slate-300 text-xs flex items-center gap-2.5">
-              <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />
+            <div className="rounded-2xl rounded-bl-none px-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-xs flex items-center gap-2.5 shadow-sm">
+              <Loader2 className="w-4 h-4 text-cyan-500 animate-spin" />
               <span>
                 Routing question to relevant MCP dimensions & executing tools...
               </span>
@@ -347,8 +347,8 @@ export const AskTab: React.FC<Props> = ({
 
         {/* Error notice */}
         {errorMessage && (
-          <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800/80 text-rose-200 text-xs flex items-start gap-2.5">
-            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+          <div className="p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/50 border border-rose-200 dark:border-rose-800/80 text-rose-800 dark:text-rose-200 text-xs flex items-start gap-2.5 shadow-sm">
+            <AlertCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
             <div className="space-y-1">
               <div className="font-semibold">Query Execution Error</div>
               <div>{errorMessage}</div>
@@ -361,7 +361,7 @@ export const AskTab: React.FC<Props> = ({
 
       {/* Input box */}
       <div className="pt-3">
-        <div className="relative rounded-2xl bg-slate-900 border border-slate-800 focus-within:border-cyan-500/60 focus-within:ring-2 focus-within:ring-cyan-500/20 transition-all shadow-lg p-2">
+        <div className="relative rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus-within:border-cyan-500/60 focus-within:ring-2 focus-within:ring-cyan-500/20 transition-all shadow-md p-2">
           <textarea
             ref={inputRef}
             rows={2}
@@ -371,11 +371,11 @@ export const AskTab: React.FC<Props> = ({
             placeholder="Ask any travel question (e.g. 'Do Singaporeans need a visa for Japan?', 'Cheapest way from Narita to Shinjuku?')..."
             maxLength={500}
             disabled={isBusy}
-            className="w-full bg-transparent px-3 py-1.5 text-sm text-white placeholder-slate-500 focus:outline-none resize-none font-sans"
+            className="w-full bg-transparent px-3 py-1.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none resize-none font-sans"
           />
 
-          <div className="flex items-center justify-between px-2 pt-1 border-t border-slate-800/60">
-            <div className="text-[11px] text-slate-500 font-mono">
+          <div className="flex items-center justify-between px-2 pt-1 border-t border-slate-100 dark:border-slate-800/60">
+            <div className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">
               {inputQuestion.length}/500 chars • Enter to send • Shift+Enter for newline
             </div>
 
