@@ -1,0 +1,6 @@
+{
+  "name": "GlobeAgent - AI Travel Planner & Multi-MCP Intelligence",
+  "description": "Intelligent travel assistant routing across multi-dimensional MCP services for live flights, stays, weather, visa requirements, routes, and budget optimization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
